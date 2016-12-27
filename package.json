@@ -6,7 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "gulp watch",
-    "start": "gulp watch"
+    "watch:pc": "gulp watch --mode=pc",
+    "watch:sp": "gulp watch --mode=sp",
+    "start": "gulp watch",
+    "start:pc": "gulp watch --mode=pc",
+    "start:sp": "gulp watch --mode=sp"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +23,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-progeny": "^0.3.2",
     "gulp-sass": "^3.0.0",
-    "gulp-size": "^2.1.0"
+    "gulp-size": "^2.1.0",
+    "yargs": "^6.5.0"
   }
 }

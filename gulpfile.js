@@ -9,14 +9,28 @@ const progeny      = require('gulp-progeny');
 const plumber      = require('gulp-plumber');
 const sass         = require('gulp-sass');
 const size         = require('gulp-size');
+const argv         = require('yargs').argv;
+const config       = require('./config');
 
-const AUTOPREFIXER_BROWSERS = [
-	'ios >= 6',
-	'android >= 4.0'
-];
+const browsers = config.option.autoprefixer.browsers;
+let AUTOPREFIXER_BROWSERS;
+
+switch (argv.mode) {
+	case 'pc':
+		AUTOPREFIXER_BROWSERS = browsers.pc;
+		break;
+
+	case 'sp':
+		AUTOPREFIXER_BROWSERS = browsers.sp;
+		break;
+	
+	default:
+		AUTOPREFIXER_BROWSERS = `${browsers.pc}, ${browsers.sp}`;
+		break;
+}
 
 gulp.task('styles', () => {
-	return gulp.src('./src/css/*.scss')
+	return gulp.src(config.dir.input)
 		.pipe(plumber({
 			errorHandler: function(err) {
 				console.log(err.messageFormatted);
@@ -30,11 +44,11 @@ gulp.task('styles', () => {
 		.pipe(cssbeautify())
 		.pipe(csscomb())
 		.pipe(size({title: 'styles'}))
-		.pipe(gulp.dest('./css'));
+		.pipe(gulp.dest(config.dir.output));
 });
 
 gulp.task('watch', () => {
-	gulp.watch('./src/css/*.scss', ['styles']);
+	gulp.watch(config.dir.input, ['styles']);
 })
 
 gulp.task('default', ['watch']);
