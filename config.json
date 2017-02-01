@@ -7,8 +7,8 @@
     "option": {
         "autoprefixer": {
             "browsers": {
-                "pc": "'last 1 version', 'ie >= 11'",
-                "sp": "'ios >= 6', 'android >= 4.0'"
+                "pc": [ "last 1 version", "ie >= 11" ],
+                "sp": [ "ios >= 6", "android >= 4.0" ]
             }
         }
     }

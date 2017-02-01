@@ -25,7 +25,7 @@ switch (argv.mode) {
 		break;
 	
 	default:
-		AUTOPREFIXER_BROWSERS = `${browsers.pc}, ${browsers.sp}`;
+		AUTOPREFIXER_BROWSERS = browsers.pc.concat(browsers.sp);
 		break;
 }
 
